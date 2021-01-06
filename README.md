@@ -19,6 +19,7 @@ Controls:
   - [X] Filled
   - [X] Outline
   - [X] Image
+  - [X] Outline Image
   - [ ] Dropdown
 - [X] Checkbox
 - [X] Slider

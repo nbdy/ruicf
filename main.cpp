@@ -8,6 +8,9 @@ std::vector<Button*> buildButtons(int x = 10, int y = 10) {
     int w = 100;
     int h = 30;
     const char* text = "don't";
+    Texture2D gpsFixed = UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsFixed.png", 32, 32);
+    Texture2D gpsUnfixed = UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsUnfixed.png", 32, 32);
+    Texture2D gpsOff = UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsOff.png", 32, 32);
 
     r.emplace_back(new Button(x, y, w, h, text));
     y += h + 16;
@@ -23,6 +26,11 @@ std::vector<Button*> buildButtons(int x = 10, int y = 10) {
     y += h + 16;
     r.emplace_back(new OutlineButton(x, y, w, h, text, YELLOW, ORANGE, YELLOW, 4));
     y += h + 16;
+    r.emplace_back(new OutlineImageButton(x, y, gpsFixed));
+    x += 48;
+    r.emplace_back(new OutlineImageButton(x, y, gpsFixed, YELLOW, ORANGE, YELLOW, CBFUNC {std::cout << "owo" << std::endl;}));
+    y += 48;
+    x -= 48;
     r.emplace_back(new ImageButton(x, y, UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsFixed.png", 32 ,32 )));
     x += 48;
     r.emplace_back(new ImageButton(x, y, UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsOff.png", 32, 32), GREEN, DARKGREEN, BLACK));
@@ -30,7 +38,7 @@ std::vector<Button*> buildButtons(int x = 10, int y = 10) {
     x -= 48;
     r.emplace_back(new ImageButton(x, y, UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsFixed.png", 32, 32), CBFUNC {std::cout << "hey" << std::endl;}));
     x += 48;
-    r.emplace_back(new ImageButton(x, y, UIItem::getTexture("/home/nbdy/CLionProjects/ruicf/icons/gpsOff.png", 32, 32), GREEN, DARKGREEN, BLACK, CBFUNC {std::cout << "stop" << std::endl;}));
+    r.emplace_back(new ImageButton(x, y, gpsOff, GREEN, DARKGREEN, BLACK, CBFUNC {std::cout << "stop" << std::endl;}));
 
     return r;
 }

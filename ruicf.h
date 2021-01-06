@@ -8,11 +8,14 @@
 #include <ctime>
 #include <string>
 #include <utility>
+#include <vector>
+#include <utility>
 
 #include <raylib.h>
 
 #define CBFUNC []()
 typedef void (*cbFunc)();
+typedef std::vector<std::string> strVec;
 
 class UIItem {
 protected:
@@ -228,11 +231,39 @@ public:
     void drawForeground(Color color) override {
         DrawTexture(texture, x + width / 2 - texture.width / 2, y + height / 2 - texture.height / 2, color);
     }
+
+    void drawBackground(Color color) override {
+        Button::drawBackground(color);
+    }
 };
 
-class OutlineImageButton : public OutlineButton { // todo
+class OutlineImageButton : public ImageButton {
+protected:
+    int lineThickness = 1;
+
 public:
-    OutlineImageButton(float x, float y, float w, float h): OutlineButton(x, y, w, h, "") {};
+    OutlineImageButton(float x, float y, Texture2D texture): ImageButton(x, y, texture, GREEN, DARKGREEN, GREEN) {};
+
+    OutlineImageButton(float x, float y, Texture2D texture, cbFunc onClickFunction): ImageButton(x, y, texture, GREEN, DARKGREEN, GREEN, onClickFunction) {};
+
+    OutlineImageButton(float x, float y, Texture2D texture, Color buttonColor, Color buttonClickedColor, Color textureColor):
+    ImageButton(x, y, texture, buttonColor, buttonClickedColor, textureColor) {};
+
+    OutlineImageButton(float x, float y, Texture2D texture, Color buttonColor, Color buttonClickedColor, Color textureColor, cbFunc onClickFunction):
+    ImageButton(x, y, texture, buttonColor, buttonClickedColor, textureColor, onClickFunction) {};
+
+    void drawBackground(Color color) override {
+        DrawRectangleRoundedLines(Rectangle {x, y, width, height}, roundness, segments, lineThickness, color);
+    }
+};
+
+class DropdownButton : public Button { // todo
+protected:
+    strVec items;
+
+public:
+    DropdownButton(float x, float y, float w, float h, std::string text, strVec items):
+    Button(x, y, w, h, std::move(text)), items(std::move(items)) {};
 };
 
 
