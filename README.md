@@ -11,8 +11,9 @@ i know for sure
 
 ## TL;DR
 Features:
-- [X] The goodness of [raylib](https://github.com/raysan5/rayylib)
+- [X] The goodness of [raylib](https://github.com/raysan5/raylib)
 - [X] The greatness of material style
+- [ ] Overlaying buttons / ui items ([raygui](https://github.com/raysan5/) can't do this either)
 
 Controls:
 - [X] Button
