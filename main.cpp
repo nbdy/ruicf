@@ -93,10 +93,14 @@ int main() {
     auto hsdr = buildHSliders();
     auto vsdr = buildVSliders();
 
+    Button b1(20, 0, 80, 20, "button1", CBFUNC {std::cout << "button1" << std::endl;});
+    Button b2(0, 0, 80, 20, "button2", CBFUNC {std::cout << "button2" << std::endl;});
+
     while(!WindowShouldClose()) {
         BeginDrawing();
 
         ClearBackground(BLACK);
+
         draw(btns);
         draw(chkb);
         draw(hsdr);
