@@ -345,6 +345,9 @@ public:
     }
 };
 
+
+// todo draw value on top or bottom
+// todo use min
 template<typename KNOB>
 class Slider : public UIItem {
 protected:
@@ -406,8 +409,7 @@ public:
     [[nodiscard]] float getValue() const override {
         auto s = width / max;
         auto v = knob.getCenter().x - x - 8; // todo remove 8
-        v = v / s;
-        return v;
+        return v / s;
     }
 };
 
